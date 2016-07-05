@@ -138,12 +138,11 @@
                 alert(error.messages);
             },
             success: function(msg) {
-                console.log(msg);
-                $("#userInfo").val(msg.toString());
+                var msgString = JSON.stringify(msg);
+                console.log(msgString);
+                $("#userInfo").html(msgString);
             }
         });
-
-
 
         $("#logout-button").click(function(e) {
 
