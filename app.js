@@ -39,12 +39,11 @@ app.get('/demo-login', function(req, res) {
             if (error || !body.access_token) {
                 console.log(error);
                 console.log(body);
+                console.log(body.access_token);
                 return res.status(400).json(error);
             } else {
                 console.log(body);
-                request.get({
-                    userInfoUrl: 'http://54.218.78.55/api/userInfo?access_token=' + body.access_token,
-                }, function(error, response, body) {
+                request('http://54.218.78.55/api/userInfo?access_token=' + body.access_token, function(error, response, body) {
                     if (error) {
                         console.log(error);
                         return res.status(400).json(error);
