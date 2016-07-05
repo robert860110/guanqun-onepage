@@ -22,7 +22,6 @@ app.get('/', function(req, res) {
 
 app.get('/demo-login', function(req, res) {
     var reqParameters = querystring.parse(url.parse(req.url).query);
-    console.log(reqParameters.code);
     if (reqParameters.code) {
         var tokenUrl = 'http://54.218.78.55/users/token';
         request.post({
@@ -39,7 +38,10 @@ app.get('/demo-login', function(req, res) {
                 return res.status(400).json(error);
             } else {
                 var bodyObject = JSON.parse(body);
-                request('http://54.218.78.55/api/userInfo?access_token=' + bodyObject.access_token, function(error, response, body) {
+                console.log(bodyObject);
+                userInfoUrl = 'http://54.218.78.55/api/userInfo?access_token=' + bodyObject.access_token;
+                console.log(userInfoUrl);
+                request(userInfoUrl, function(error, response, body) {
                     if (error) {
                         console.log(error);
                         return res.status(400).json(error);
