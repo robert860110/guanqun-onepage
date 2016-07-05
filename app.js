@@ -46,8 +46,10 @@ app.get('/demo-login', function(req, res) {
                     userInfoUrl: 'http://54.218.78.55/api/userInfo?access_token=' + body.access_token,
                 }, function(error, response, body) {
                     if (error) {
+                        console.log(error);
                         return res.status(400).json(error);
                     } else {
+                        console.log(body);
                         return res.sendFile(__dirname + '/public' + '/demo2.html');
                     }
                 });
