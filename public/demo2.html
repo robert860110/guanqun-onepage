@@ -119,11 +119,33 @@
         </div>
         <!-- /.row -->
     </div>
+    <div>
+        <p id="userInfo"></p>
+    </div>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.js"></script>
     <script>
     $(document).ready(function() {
-        $("#login-button").click(function(e) {
+        var data = {};
+
+        $.ajax({
+            type: 'GET',
+            url: '/userInfo',
+            data: JSON.stringify(data),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            error: function(error) {
+                alert(error.messages);
+            },
+            success: function(msg) {
+                //console.log(msg);
+                $("#userInfo").val(msg.toString());
+            }
+        });
+
+
+
+        $("#logout-button").click(function(e) {
 
             $('<form action="http://54.218.78.55/users/authorize" method="GET">' +
                 '<input type="hidden" name="client_id" value="f570f4c413c012afa53d1856a08f41390670d1724cfe7bcf5643aa90967796e2">' +

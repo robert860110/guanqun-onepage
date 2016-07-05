@@ -3,7 +3,8 @@ var express = require('express'),
     url = require('url'),
     querystring = require('querystring'),
     bodyParser = require('body-parser'),
-    request = require('request');
+    request = require('request'),
+    expressSession = require('express-session');
 
 var port = 3000;
 
@@ -12,8 +13,13 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
+app.use(expressSession({
+    resave: false, // don't save session if unmodified
+    saveUninitialized: false, // don't create session until something stored
+    secret: 'shhhh, very secret'
+}));
 app.use(express.static(__dirname + '/public'));
+
 
 
 app.get('/', function(req, res) {
@@ -47,6 +53,8 @@ app.get('/demo-login', function(req, res) {
                         return res.status(400).json(error);
                     } else {
                         console.log(body);
+                        var bodyObject = JSON.parse(body);
+                        req.session.userInfo = bodyObject;
                         return res.sendFile(__dirname + '/public' + '/demo2.html');
                     }
                 });
@@ -57,9 +65,11 @@ app.get('/demo-login', function(req, res) {
         return res.sendFile(__dirname + '/public' + '/demo1.html');
     }
 
-
 });
 
+app.get('/userInfo', function(req, res) {
+    return res.json(req.session.userInfo);
+});
 
 app.listen(port, function() {
     console.log('app listening on port ' + port);
