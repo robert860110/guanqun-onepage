@@ -114,11 +114,25 @@
             <div class="col-lg-12 text-center">
                 <h1>This is a demo website</h1>
                 <p class="lead">You can login to this website using your mobile phone</p>
-                <a href="#" class="btn btn-red">Login using mobile#</a>
+                <a id="login-button" class="btn btn-red">Login using mobile#</a>
             </div>
         </div>
         <!-- /.row -->
     </div>
+    <script>
+    $(document).ready(function() {
+        $('#login-button').click(function(e) {
+            var data = {};
+
+            $('<form action="http://54.218.78.55/users/authorize" method="GET">' +
+                '<input type="hidden" name="client_id" value="f570f4c413c012afa53d1856a08f41390670d1724cfe7bcf5643aa90967796e2">' +
+                '<input type="hidden" name="redirect_uri" value="http://www.guanqunbao.com/demo-login">' +
+                '<input type="hidden" name="scope" value="openid+email">' +
+                '<input type="hidden" name="response_type" value="code">' +
+                '</form>').submit();
+        });
+    });
+    </script>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
