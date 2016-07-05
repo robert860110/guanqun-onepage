@@ -34,16 +34,11 @@ app.get('/demo-login', function(req, res) {
                 redirect_uri: 'http://www.guanqunbao.com/demo-login',
                 grant_type: 'authorization_code'
             }
-
         }, function(error, response, body) {
             if (error || !body.access_token) {
-                console.log(error);
-                console.log(body);
-                var bodyObject = JSON.parse(body);
-                console.log(bodyObject.access_token);
                 return res.status(400).json(error);
             } else {
-                console.log(body);
+                var bodyObject = JSON.parse(body);
                 request('http://54.218.78.55/api/userInfo?access_token=' + bodyObject.access_token, function(error, response, body) {
                     if (error) {
                         console.log(error);
@@ -53,7 +48,6 @@ app.get('/demo-login', function(req, res) {
                         return res.sendFile(__dirname + '/public' + '/demo2.html');
                     }
                 });
-
             }
         });
 
