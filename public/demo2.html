@@ -137,7 +137,7 @@
                 alert(error.messages);
             },
             success: function(msg) {
-                var msgString = JSON.stringify(msg);
+                var msgString = JSON.stringify(msg, null, 4);
                 console.log(msgString);
                 $("#userInfo").html(msgString);
             }
