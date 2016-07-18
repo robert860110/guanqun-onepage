@@ -29,13 +29,13 @@ app.get('/', function(req, res) {
 app.get('/demo-login', function(req, res) {
     var reqParameters = querystring.parse(url.parse(req.url).query);
     if (reqParameters.code) {
-        var tokenUrl = 'http://54.218.78.55/users/token';
+        var tokenUrl = 'http://54.218.78.55/user/token';
         request.post({
             url: tokenUrl,
             form: {
                 code: reqParameters.code,
-                client_id: 'f570f4c413c012afa53d1856a08f41390670d1724cfe7bcf5643aa90967796e2',
-                client_secret: '150156b2cc1a6da37b16f7bbed109b14b32f7a2a99dc7bec764688b894c8aa59',
+                client_id: 'cfe01b12e5a0e1ad1262338d789a3479',
+                client_secret: '8cff5cd942e1e6e9d1cf42abb20baf58',
                 redirect_uri: 'http://www.guanqunbao.com/demo-login',
                 grant_type: 'authorization_code'
             }
@@ -45,7 +45,7 @@ app.get('/demo-login', function(req, res) {
                 console.log(error);
                 return res.status(400).json(error);
             } else {
-                userInfoUrl = 'http://54.218.78.55/api/userInfo?access_token=' + bodyObject.access_token;
+                userInfoUrl = 'http://54.218.78.55/api/user?access_token=' + bodyObject.access_token;
                 console.log(userInfoUrl);
                 request(userInfoUrl, function(error, response, body) {
                     if (error) {
