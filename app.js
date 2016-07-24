@@ -34,8 +34,8 @@ app.get('/demo-login', function(req, res) {
             url: tokenUrl,
             form: {
                 code: reqParameters.code,
-                client_id: 'cfe01b12e5a0e1ad1262338d789a3479',
-                client_secret: '8cff5cd942e1e6e9d1cf42abb20baf58',
+                client_id: 'c4ed7f4eca8767f4da3e42b733ced040',
+                client_secret: 'ab6bd0fb229ea7375b049f3f56cae92c',
                 redirect_uri: 'http://www.guanqunbao.com/demo-login',
                 grant_type: 'authorization_code'
             }

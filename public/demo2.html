@@ -114,7 +114,9 @@
             <div class="col-lg-12 text-center">
                 <h1>This is a demo website</h1>
                 <p class="lead">Now you have logged in</p>
-                <a id="login-button" class="btn btn-red">Logout</a>
+                <form action="/demo-login">
+                    <button id="logout-button" type="submit" class="btn btn-danger">Logout</button>
+                </form>
                 <br>
                 <p id="userInfo"></p>
             </div>
@@ -143,15 +145,6 @@
             }
         });
 
-        $("#logout-button").click(function(e) {
-
-            $('<form action="http://54.218.78.55/users/authorize" method="GET">' +
-                '<input type="hidden" name="client_id" value="f570f4c413c012afa53d1856a08f41390670d1724cfe7bcf5643aa90967796e2">' +
-                '<input type="hidden" name="redirect_uri" value="http://www.guanqunbao.com/demo-login">' +
-                '<input type="hidden" name="scope" value="openid phone">' +
-                '<input type="hidden" name="response_type" value="code">' +
-                '</form>').submit();
-        });
     });
     </script>
     <!-- jQuery -->
